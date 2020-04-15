@@ -1,13 +1,15 @@
 ---
 version: "3.7"
+volumes:
+        boxfuse:
 services:
         build_boxfuse:
                 volumes:
-                        - "/var/boxfuse/target:/var/boxfuse/target"
+                        - boxfuse:/var/boxfuse/target/
                 build: build_service/
         prod_boxfuse:
                 volumes:
-                        - "/var/boxfuse/target:/opt/tomcat/webapps"
+                        - boxfuse:/opt/tomcat/webapps/hello
                 build: prod_service/
                 command: "/opt/tomcat/bin/catalina.sh run"
                 ports:
